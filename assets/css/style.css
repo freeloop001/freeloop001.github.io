@@ -219,7 +219,10 @@ body::before {
   font-family: var(--font-display);
   font-size: 36px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--accent);
   color: var(--text-primary);
 }
 
@@ -234,7 +237,9 @@ body::before {
   font-family: var(--font-display);
   font-size: 26px;
   font-weight: 600;
-  margin: 40px 0 20px;
+  margin: 48px 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
   color: var(--text-primary);
 }
 
@@ -242,7 +247,8 @@ body::before {
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: 600;
-  margin: 30px 0 16px;
+  margin: 36px 0 18px;
+  color: var(--text-primary);
 }
 
 .post-content p {
@@ -312,20 +318,30 @@ body::before {
 
 /* Table */
 .post-content table {
-  width: 100%;
+100%;
   border-collapse: collapse;
   margin: 24px 0;
+  font-size: 14px;
 }
 
 .post-content th, .post-content td {
-  padding: 12px 16px;
+  padding: 14px 18px;
   border: 1px solid var(--border);
   text-align: left;
 }
 
 .post-content th {
-  background: rgba(224, 122, 95, 0.08);
+  background: rgba(224, 122, 95, 0.1);
   font-weight: 600;
+  color: var(--text-primary);
+}
+
+.post-content tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.post-content tr:hover td {
+  background: rgba(224, 122, 95, 0.05);
 }
 
 /* Footer */
