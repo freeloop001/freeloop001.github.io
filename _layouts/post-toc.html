@@ -71,46 +71,52 @@
   <!-- TOC 滚动高亮 -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const tocLinks = document.querySelectorAll('.toc-nav a');
+      // 延迟执行，确保页面完全渲染
+      setTimeout(function() {
+        const tocLinks = document.querySelectorAll('.toc-nav a');
 
-      // 收集 TOC 中链接对应的 heading 的位置
-      const tocHeadingOffsets = [];
-
-      tocLinks.forEach(function(link) {
-        const id = link.getAttribute('href').replace('#', '');
-        const heading = document.getElementById(id);
-        if (heading) {
-          tocHeadingOffsets.push({
-            id: id,
-            offset: heading.offsetTop
-          });
-        }
-      });
-
-      function updateActiveLink() {
-        const scrollTop = window.scrollY + 120;
-
-        if (tocHeadingOffsets.length === 0) return;
-
-        // 找到当前滚动位置对应的 TOC 标题
-        let activeId = tocHeadingOffsets[0].id;
-
-        for (let i = 0; i < tocHeadingOffsets.length; i++) {
-          if (scrollTop >= tocHeadingOffsets[i].offset) {
-            activeId = tocHeadingOffsets[i].id;
-          }
-        }
+        // 收集 TOC 中链接对应的 heading 的位置
+        const tocHeadingOffsets = [];
 
         tocLinks.forEach(function(link) {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + activeId) {
-            link.classList.add('active');
+          const id = link.getAttribute('href').replace('#', '');
+          const heading = document.getElementById(id);
+          if (heading) {
+            // 使用 getBoundingClientRect 获取相对于文档的准确位置
+            const rect = heading.getBoundingClientRect();
+            const offset = rect.top + window.scrollY;
+            tocHeadingOffsets.push({
+              id: id,
+              offset: offset
+            });
           }
         });
-      }
 
-      window.addEventListener('scroll', updateActiveLink);
-      updateActiveLink();
+        function updateActiveLink() {
+          const scrollTop = window.scrollY + 100;
+
+          if (tocHeadingOffsets.length === 0) return;
+
+          // 找到当前滚动位置对应的 TOC 标题
+          let activeId = tocHeadingOffsets[0].id;
+
+          for (let i = 0; i < tocHeadingOffsets.length; i++) {
+            if (scrollTop >= tocHeadingOffsets[i].offset) {
+              activeId = tocHeadingOffsets[i].id;
+            }
+          }
+
+          tocLinks.forEach(function(link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + activeId) {
+              link.classList.add('active');
+            }
+          });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
+      }, 100);
     });
   </script>
 </body>
