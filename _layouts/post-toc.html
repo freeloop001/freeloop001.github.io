@@ -69,13 +69,16 @@
       });
 
       function updateActiveLink() {
-        const scrollTop = window.scrollY + 100;
+        const scrollTop = window.scrollY + 120; // 调整偏移量
 
-        let activeId = '';
-        for (let i = headings.length - 1; i >= 0; i--) {
+        if (headings.length === 0) return;
+
+        // 找到当前滚动位置对应的标题
+        let activeId = headings[0].id;
+
+        for (let i = 0; i < headings.length; i++) {
           if (scrollTop >= headings[i].offset) {
             activeId = headings[i].id;
-            break;
           }
         }
 
