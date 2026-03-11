@@ -10,9 +10,9 @@ title: 首页
       <a href="{{ post.url }}">{{ post.title }}</a>
     </h2>
     <div class="post-meta">
-      <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+      <time>{{ post.date | date: "%Y年%m月%d日" }}</time>
     </div>
-    <p class="post-excerpt">{{ post.excerpt }}</p>
+    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
     {% if post.tags %}
     <div class="post-tags">
       {% for tag in post.tags %}

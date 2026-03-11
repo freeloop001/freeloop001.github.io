@@ -5,7 +5,7 @@ layout: default
 <article class="post-content">
   <h1>{{ page.title }}</h1>
   <div class="post-meta">
-    <time>{{ page.date | date: "%Y-%m-%d" }}</time>
+    <time>{{ page.date | date: "%Y年%m月%d日" }}</time>
     {% if page.categories %}
       <span> • {{ page.categories | join: ", " }}</span>
     {% endif %}
@@ -14,11 +14,14 @@ layout: default
   {{ content }}
 
   {% if page.tags %}
-  <div class="post-tags" style="margin-top: 40px;">
-    <span style="color: #666;">标签:</span>
+  <div class="post-tags">
     {% for tag in page.tags %}
       <span class="post-tag">{{ tag }}</span>
     {% endfor %}
   </div>
   {% endif %}
 </article>
+
+<div style="text-align: center; margin-top: 32px;">
+  <a href="/" style="color: var(--accent); text-decoration: none; font-weight: 500;">← 返回首页</a>
+</div>
