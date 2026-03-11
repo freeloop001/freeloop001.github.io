@@ -14,7 +14,13 @@ title: 首页
       {% if post.categories %}
       <span class="post-category-link">
         {% for cat in post.categories %}
-          <a href="/category/{{ cat }}/">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
+          {% if cat == "tech" %}
+            <a href="/category/tech/">技术文章</a>
+          {% elsif cat == "learning" %}
+            <a href="/category/learning/">学习笔记</a>
+          {% else %}
+            <a href="/category/{{ cat }}/">{{ cat }}</a>
+          {% endif %}
         {% endfor %}
       </span>
       {% endif %}
