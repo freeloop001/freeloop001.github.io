@@ -56,29 +56,32 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const tocLinks = document.querySelectorAll('.toc-nav a');
-      const headings = [];
 
-      // 收集所有标题元素
-      document.querySelectorAll('.post-content h2, .post-content h3').forEach(function(heading) {
-        if (heading.id) {
-          headings.push({
-            id: heading.id,
+      // 收集 TOC 中链接对应的 heading 的位置
+      const tocHeadingOffsets = [];
+
+      tocLinks.forEach(function(link) {
+        const id = link.getAttribute('href').replace('#', '');
+        const heading = document.getElementById(id);
+        if (heading) {
+          tocHeadingOffsets.push({
+            id: id,
             offset: heading.offsetTop
           });
         }
       });
 
       function updateActiveLink() {
-        const scrollTop = window.scrollY + 120; // 调整偏移量
+        const scrollTop = window.scrollY + 120;
 
-        if (headings.length === 0) return;
+        if (tocHeadingOffsets.length === 0) return;
 
-        // 找到当前滚动位置对应的标题
-        let activeId = headings[0].id;
+        // 找到当前滚动位置对应的 TOC 标题
+        let activeId = tocHeadingOffsets[0].id;
 
-        for (let i = 0; i < headings.length; i++) {
-          if (scrollTop >= headings[i].offset) {
-            activeId = headings[i].id;
+        for (let i = 0; i < tocHeadingOffsets.length; i++) {
+          if (scrollTop >= tocHeadingOffsets[i].offset) {
+            activeId = tocHeadingOffsets[i].id;
           }
         }
 
