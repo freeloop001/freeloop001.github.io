@@ -177,6 +177,20 @@ body::before {
   font-weight: 400;
 }
 
+.post-category-link {
+  margin-left: 12px;
+}
+
+.post-category-link a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.post-category-link a:hover {
+  text-decoration: underline;
+}
+
 .post-excerpt {
   color: var(--text-secondary);
   font-size: 15px;

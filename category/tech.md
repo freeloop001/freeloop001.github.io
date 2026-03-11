@@ -3,6 +3,8 @@ layout: default
 title: 技术文章
 ---
 
+<h1 style="font-family: var(--font-display); font-size: 28px; margin-bottom: 32px; text-align: center;">技术文章</h1>
+
 <ul class="post-list">
 {% for post in site.categories.tech %}
   <li class="post-item">
@@ -11,6 +13,13 @@ title: 技术文章
     </h2>
     <div class="post-meta">
       <time>{{ post.date | date: "%Y年%m月%d日" }}</time>
+      {% if post.categories %}
+      <span class="post-category-link">
+        {% for cat in post.categories %}
+          <a href="/category/{{ cat }}/">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </span>
+      {% endif %}
     </div>
     <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
     {% if post.tags %}
