@@ -6,7 +6,8 @@ title: 学习笔记
 <h1 style="font-family: var(--font-display); font-size: 28px; margin-bottom: 32px; text-align: center;">学习笔记</h1>
 
 <ul class="post-list">
-{% for post in site.categories.learning %}
+{% assign sorted_posts = site.categories.learning | sort: "date" | reverse %}
+{% for post in sorted_posts %}
   <li class="post-item">
     <h2 class="post-title">
       <a href="{{ post.url }}">{{ post.title }}</a>
