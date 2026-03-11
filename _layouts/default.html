@@ -19,8 +19,8 @@
       <p class="site-description">{{ site.description }}</p>
       <nav class="nav">
         <a href="/" {% if page.url == "/" or page.url == "/index.html" %}class="active"{% endif %}>首页</a>
-        <a href="/category/tech/" {% if page.url contains "/category/tech" %}class="active"{% endif %}>技术文章</a>
-        <a href="/category/learning/" {% if page.url contains "/category/learning" %}class="active"{% endif %}>学习笔记</a>
+        <a href="/category/tech/" {% if page.url contains "/category/tech" or page.url contains "/tech/" %}class="active"{% endif %}>技术文章</a>
+        <a href="/category/learning/" {% if page.url contains "/category/learning" or page.url contains "/learning/" %}class="active"{% endif %}>学习笔记</a>
         <a href="/about" {% if page.url contains "/about" %}class="active"{% endif %}>关于</a>
       </nav>
     </header>
