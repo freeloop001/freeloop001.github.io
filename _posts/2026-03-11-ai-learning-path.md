@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AI 大模型应用开发学习计划"
-date: 2026-03-11
+date: 2026-03-11 10:00:00 +0800
 tags: [AI, LLM, 学习计划, Python]
 categories: [learning]
 ---
