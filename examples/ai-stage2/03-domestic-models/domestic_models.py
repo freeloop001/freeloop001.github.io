@@ -1,7 +1,12 @@
 # 国内模型 API 示例
-# 需要安装: pip install openai
+# 需要安装: pip install openai python-dotenv
 
+import os
+from dotenv import load_dotenv
 from openai import OpenAI
+
+# 加载 .env 配置
+load_dotenv()
 
 # ============ DeepSeek ============
 def test_deepseek():
@@ -45,8 +50,22 @@ def test_glm():
     )
     print(response.choices[0].message.content)
 
+# ============ MiniMax ============
+def test_minimax():
+    print("\n=== MiniMax ===")
+    client = OpenAI(
+        api_key=os.getenv("LLM_API_KEY"),
+        base_url=os.getenv("LLM_BASE_URL")
+    )
+
+    response = client.chat.completions.create(
+        model=os.getenv("LLM_MODEL_ID"),
+        messages=[{"role": "user", "content": "你好，请用一句话介绍自己"}]
+    )
+    print(response.choices[0].message.content)
+
 # ============ 统一调用接口 ============
-def call_model(provider: str, prompt: str, api_key: str) -> str:
+def call_model(provider: str, prompt: str, api_key: str = None) -> str:
     """统一调用接口"""
     configs = {
         "deepseek": {
@@ -60,8 +79,23 @@ def call_model(provider: str, prompt: str, api_key: str) -> str:
         "glm": {
             "base_url": "https://open.bigmodel.cn/api/paas/v4",
             "model": "glm-4"
+        },
+        "minimax": {
+            "base_url": os.getenv("LLM_BASE_URL"),
+            "model": os.getenv("LLM_MODEL_ID"),
+            "api_key": os.getenv("LLM_API_KEY")
         }
     }
+
+    # MiniMax 使用 .env 中的配置
+    if provider == "minimax":
+        config = configs[provider]
+        client = OpenAI(api_key=config["api_key"], base_url=config["base_url"])
+        response = client.chat.completions.create(
+            model=config["model"],
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content
 
     config = configs[provider]
     client = OpenAI(api_key=api_key, base_url=config["base_url"])
@@ -74,13 +108,16 @@ def call_model(provider: str, prompt: str, api_key: str) -> str:
 
 # 测试（需要替换为实际的 API Key）
 if __name__ == "__main__":
-    # 示例：统一接口调用
+    # 测试 MiniMax（使用 .env 配置）
+    test_minimax()
+
+    # 示例：统一接口调用 MiniMax
     # prompt = "用一句话介绍Python"
-    # result = call_model("deepseek", prompt, "your-key")
+    # result = call_model("minimax", prompt)
     # print(result)
 
-    print("请替换为实际的 API Key 后测试")
-    print("国内模型对比:")
+    print("\n国内模型对比:")
     print("- DeepSeek: 性价比高，开源能力强")
     print("- Qwen: 阿里生态，稳定性好")
     print("- GLM: 中文优化，响应速度快")
+    print("- MiniMax: MoE架构，多模态能力强")
