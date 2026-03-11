@@ -10,7 +10,7 @@ title: 首页
       <a href="{{ post.url }}">{{ post.title }}</a>
     </h2>
     <div class="post-meta">
-      <time>{{ post.date | date: "%Y年%m月%d日" }}</time>
+      <time>{{ post.date | date: "%Y年%m月%d日 %H:%M:%S" }}</time>
       {% if post.categories %}
       <span class="post-category-link">
         {% for cat in post.categories %}
