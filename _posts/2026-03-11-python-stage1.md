@@ -351,10 +351,10 @@ print(result)
 **httpx vs requests**：
 | 特性 | requests | httpx |
 |------|----------|-------|
-| 同步支持 | ✓ | ✓ |
-| 异步支持 | ✗ | ✓ |
+| 同步调用 | ✓ (原生) | ✓ |
+| 异步调用 | ✗ (需 grequests) | ✓ (原生) |
 | HTTP/2 | ✗ | ✓ |
-| 连接池 | 基础 | 更强大 |
+| API 兼容 | - | 高度兼容 |
 
 ---
 
@@ -409,12 +409,26 @@ asyncio.run(main())
 ### 异步上下文管理器
 
 ```python
+import asyncio
+import httpx
+
 async def fetch_all(urls):
     async with httpx.AsyncClient() as client:
         # 并发请求多个 URL
         tasks = [client.get(url) for url in urls]
         responses = await asyncio.gather(*tasks)
         return [r.json() for r in responses]
+
+# 调用示例
+if __name__ == "__main__":
+    urls = [
+        "https://httpbin.org/get",
+        "https://httpbin.org/ip",
+        "https://httpbin.org/headers"
+    ]
+    results = asyncio.run(fetch_all(urls))
+    for r in results:
+        print(r)
 ```
 
 ### 实战：异步 API 调用
