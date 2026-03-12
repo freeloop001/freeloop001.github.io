@@ -4,7 +4,7 @@ import os
 # JSON 文件处理
 
 # 写入 JSON 文件
-data = {"name": "Freeloop", "age": 25}
+data = {"name": "Alice", "age": 25}
 with open("user.json", "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
