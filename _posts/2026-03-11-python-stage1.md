@@ -704,4 +704,4 @@ uv pip install -r requirements.txt
 11. 创建一个命令行工具：读取 Excel 文件，调用天气 API，将结果保存为 JSON
 12. 用异步编程并发获取多个用户信息
 
-> 下节预告：[阶段2 - AI 开发基础（调用 LLM API）](/blog/2026/03/11/ai-stage2.html)
+**下节预告**： [阶段2 - AI 开发基础（调用 LLM API）](/blog/2026/03/11/ai-stage2.html)
