@@ -90,6 +90,7 @@ manager.add_student("David", 78)
 print(f"\n所有学生: {manager.list_all()}")
 print(f"平均成绩: {manager.get_average():.2f}")
 print(f"前三名: {manager.get_top(3)}")
+print(f"前第一名: {manager.get_top(1)}")
 
 # 练习3: 冒泡排序算法
 def bubble_sort(arr):
