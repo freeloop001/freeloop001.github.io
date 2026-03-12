@@ -283,12 +283,12 @@ for para in doc.paragraphs:
 import requests
 
 # GET 请求
-response = requests.get("https://api.github.com/users/freeloop001")
+response = requests.get("https://api.github.com/users/torvalds")
 print(response.status_code)
 print(response.json())
 
 # POST 请求
-data = {"username": "freeloop"}
+data = {"username": "testuser"}
 response = requests.post("https://httpbin.org/post", json=data)
 ```
 
@@ -331,7 +331,7 @@ pip install httpx
 import httpx
 
 # 同步用法（类似 requests）
-response = httpx.get("https://api.github.com/users/freeloop001")
+response = httpx.get("https://api.github.com/users/torvalds")
 print(response.status_code)
 print(response.json())
 
@@ -340,7 +340,7 @@ import asyncio
 
 async def fetch_data():
     async with httpx.AsyncClient() as client:
-        response = await client.get("https://api.github.com/users/freeloop001")
+        response = await client.get("https://api.github.com/users/torvalds")
         return response.json()
 
 # 调用异步函数
@@ -349,6 +349,7 @@ print(result)
 ```
 
 **httpx vs requests**：
+
 | 特性 | requests | httpx |
 |------|----------|-------|
 | 同步调用 | ✓ (原生) | ✓ |

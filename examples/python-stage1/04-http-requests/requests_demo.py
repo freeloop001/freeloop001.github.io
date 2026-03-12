@@ -8,7 +8,7 @@ print(f"GET 状态码: {response.status_code}")
 print(f"GET 响应: {response.json()}")
 
 # POST 请求
-data = {"username": "freeloop", "age": 25}
+data = {"username": "testuser", "age": 25}
 response = requests.post("https://httpbin.org/post", json=data)
 print(f"\nPOST 状态码: {response.status_code}")
 print(f"POST 响应: {response.json()}")
