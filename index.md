@@ -7,7 +7,7 @@ title: 首页
 {% for post in site.posts %}
   <li class="post-item">
     <h2 class="post-title">
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </h2>
     <div class="post-meta">
       <time>{{ post.date | date: "%Y年%m月%d日 %H:%M:%S" }}</time>
