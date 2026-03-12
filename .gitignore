@@ -23,5 +23,6 @@ Thumbs.db
 # Environment
 .env
 
-# Claude
+# Claude (local config)
 .claude/
+CLAUDE.md
