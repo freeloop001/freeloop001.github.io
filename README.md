@@ -4,7 +4,7 @@
 
 ## 访问
 
-- 博客主页：https://freeloop001.github.io
+- 博客主页：https://freeloop001.github.io/blog
 
 ## 编写文章
 
